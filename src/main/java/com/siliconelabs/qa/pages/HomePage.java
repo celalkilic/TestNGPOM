@@ -1,5 +1,8 @@
 package com.siliconelabs.qa.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -14,6 +17,9 @@ public class HomePage extends BasePage{
 	@FindBy(xpath = "//*[@id='content']//h1")
 	WebElement dashboard;
 	
+	@FindBy(xpath = "//*[@id='dashboard-quick-launch-panel-menu_holder']//span")
+	List<WebElement> quickLaunchElements;
+	
 	public HomePage() {
 		PageFactory.initElements(driver, this);
 		elementUtil = new ElementUtil();
@@ -22,6 +28,16 @@ public class HomePage extends BasePage{
 	public String verifyHeader() {
 		elementUtil.waitForElementVisible(dashboard);
 		return elementUtil.doGetText(dashboard);
+	}
+	
+	public ArrayList<String> verifyQuickLaunchElements() {
+		ArrayList<String> elementsList = new ArrayList<String>();
+		for (WebElement webElement : quickLaunchElements) {
+			String elementText = webElement.getText();
+			elementsList.add(elementText);
+		}
+		
+		return elementsList;
 	}
 	
 }
