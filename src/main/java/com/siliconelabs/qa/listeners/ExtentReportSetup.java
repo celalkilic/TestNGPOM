@@ -1,5 +1,9 @@
 package com.siliconelabs.qa.listeners;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
@@ -13,7 +17,7 @@ public class ExtentReportSetup {
 
 	public static ExtentReports extentReportSetup() {
 
-		sparkReport = new ExtentSparkReporter(System.getProperty("user.dir") + "/ExtentReport/" + "1.html");
+		sparkReport = new ExtentSparkReporter("./ExtentReport/" + getLocalTime() + ".html");
 		extent = new ExtentReports();
 		extent.attachReporter(sparkReport);
 
@@ -23,6 +27,12 @@ public class ExtentReportSetup {
 
 		return extent;
 
+	}
+
+	public static String getLocalTime() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH-mm-ss");
+		Date date = new Date();
+		return dateFormat.format(date);
 	}
 
 }
