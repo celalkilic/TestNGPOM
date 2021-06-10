@@ -3,6 +3,7 @@ package com.siliconelabs.qa.pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -18,7 +19,7 @@ public class HomePage extends BasePage{
 	WebElement dashboard;
 	
 	@FindBy(xpath = "//*[@id='dashboard-quick-launch-panel-menu_holder']//span")
-	List<WebElement> quickLaunchElements;
+	List<WebElement> quickLaunchElements = driver.findElements(By.xpath("//*[@id='dashboard-quick-launch-panel-menu_holder']//span"));
 	
 	public HomePage() {
 		PageFactory.initElements(driver, this);
